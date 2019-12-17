@@ -1,0 +1,24 @@
+{
+    "name": "liyangmsn/payment-channel",
+    "description": "多通道支付",
+    "require": {
+        "overtrue/wechat": "~4.0",
+        "php": "^7.2",
+        "pimple/pimple": "^3.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "liyang",
+            "email": "liyangmsn@live.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PaymentChannel\\": "src/"
+        },
+        "classmap": [
+            "src/Kernel/Alipay"
+        ]
+    }
+}
