@@ -31,7 +31,7 @@ class Application extends BaseApplication implements PaymentInterface {
     public function unify(array $params, array $options = []): array {
         $request = new \AlipayTradeCreateRequest();
         $request->setBizContent(json_encode($params));
-        if (isset($options['notify_url'])) {
+        if (array_key_exists('notify_url', $options)) {
             $request->setNotifyUrl($options['notify_url']);
         }
         $result = $this->payment->execute($request, $this->auth_token, $this->app_auth_token, $this->target_app_id);
