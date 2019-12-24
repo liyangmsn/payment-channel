@@ -19,19 +19,19 @@ class Application extends BaseApplication implements PaymentInterface {
         $this->payment = new SxfClient($this->config);
     }
 
-    public function pay(array $options): array {
+    public function pay(array $params): array {
         $request = new SxfQrReverseScanRequest();
         $request->setBizContent(array_merge([
             'mno' => $this->config['mno'],
-        ], $options));
+        ], $params));
         return $this->payment->execute($request);
     }
 
-    public function unify(array $options): array {
+    public function unify(array $params, array $options = []): array {
         $request = new SxfQrJsApiScanRequest();
         $request->setBizContent(array_merge([
             'mno' => $this->config['mno'],
-        ], $options));
+        ], $params));
         return $this->payment->execute($request);
     }
 

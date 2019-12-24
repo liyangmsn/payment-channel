@@ -3,9 +3,9 @@
 namespace PaymentChannel\Contracts;
 
 interface PaymentInterface {
-    public function pay(array $options): array;
+    public function pay(array $params): array;
 
-    public function unify(array $options): array;
+    public function unify(array $params, array $options = []): array;
 
     public function query(string $out_trade_no): array;
 

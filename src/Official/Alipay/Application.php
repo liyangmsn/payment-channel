@@ -21,16 +21,19 @@ class Application extends BaseApplication implements PaymentInterface {
         $this->target_app_id = $config['alipay']['target_app_id'];
     }
 
-    public function pay(array $options): array {
+    public function pay(array $params): array {
         $request = new \AlipayTradePayRequest();
-        $request->setBizContent(json_encode($options));
+        $request->setBizContent(json_encode($params));
         $result = $this->payment->execute($request, $this->auth_token, $this->app_auth_token, $this->target_app_id);
         return $this->_object_to_array($result);
     }
 
-    public function unify(array $options): array {
+    public function unify(array $params, array $options = []): array {
         $request = new \AlipayTradeCreateRequest();
-        $request->setBizContent(json_encode($options));
+        $request->setBizContent(json_encode($params));
+        if (isset($options['notify_url'])) {
+            $request->setNotifyUrl($options['notify_url']);
+        }
         $result = $this->payment->execute($request, $this->auth_token, $this->app_auth_token, $this->target_app_id);
         return $this->_object_to_array($result);
     }

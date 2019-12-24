@@ -15,12 +15,12 @@ class Application extends BaseApplication implements PaymentInterface {
         $this->payment = new Payment($config['wechat']);
     }
 
-    public function pay(array $options): array {
-        return $this->payment->pay($options);
+    public function pay(array $params): array {
+        return $this->payment->pay($params);
     }
 
-    public function unify(array $options): array {
-        return $this->payment->order->unify($options);
+    public function unify(array $params, array $options = []): array {
+        return $this->payment->order->unify($params);
     }
 
     public function query(string $out_trade_no): array {
