@@ -17,8 +17,12 @@ class Application extends BaseApplication implements PaymentInterface {
         $config = $this->app->getConfig();
         $this->payment = new Alipay($config['alipay']);
         $this->auth_token = $config['alipay']['auth_token'];
-        $this->app_auth_token = $config['alipay']['app_auth_token'];
-        $this->target_app_id = $config['alipay']['target_app_id'];
+        if (array_key_exists('app_auth_token', $config['alipay'])) {
+            $this->app_auth_token = $config['alipay']['app_auth_token'];
+        }
+        if (array_key_exists('target_app_id', $config['alipay'])) {
+            $this->target_app_id = $config['alipay']['target_app_id'];
+        }
     }
 
     public function pay(array $params): array {
