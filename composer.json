@@ -19,6 +19,9 @@
         },
         "classmap": [
             "src/Kernel/Alipay"
+        ],
+        "files": [
+            "src/Kernel/Support/Helpers.php"
         ]
     }
 }

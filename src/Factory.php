@@ -16,6 +16,7 @@ namespace PaymentChannel;
  *
  * @method static \PaymentChannel\Official\Application            official(array $config)
  * @method static \PaymentChannel\Sxf\Application                 sxf(array $config)
+ * @method static \PaymentChannel\SwiftPass\Application              swift_pass(array $config)
  */
 class Factory {
     /**
