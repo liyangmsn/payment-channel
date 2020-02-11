@@ -163,7 +163,6 @@ class ClientResponseHandler  {
 				$signPars .= $k . "=" . $v . "&";
 			}
 		}
-
 		$signPars = substr($signPars, 0, strlen($signPars) - 1);
 		$res = openssl_get_publickey($this->public_rsa_key);
 		if ($this->getParameter('sign_type') == 'RSA_1_1') {
