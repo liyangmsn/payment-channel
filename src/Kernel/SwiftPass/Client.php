@@ -33,7 +33,6 @@ class Client {
         }
         $reqHandler->setReqParams($params, [
             'url',
-            'notify_url',
             'private_rsa_key',
             'public_rsa_key'
         ]);
