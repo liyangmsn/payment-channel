@@ -5,12 +5,6 @@ namespace PaymentChannel\SwiftPass;
 use PaymentChannel\Contracts\PaymentInterface;
 use PaymentChannel\Kernel\BaseApplication;
 use PaymentChannel\Kernel\SwiftPass\Client;
-use PaymentChannel\Kernel\SwiftPass\PayHttpClient;
-use PaymentChannel\Kernel\Sxf\Request\SxfQrJsApiScanRequest;
-use PaymentChannel\Kernel\Sxf\Request\SxfQrQueryRequest;
-use PaymentChannel\Kernel\Sxf\Request\SxfQrRefundRequest;
-use PaymentChannel\Kernel\Sxf\Request\SxfQrReverseScanRequest;
-use PaymentChannel\Kernel\Sxf\SxfClient;
 
 class Application extends BaseApplication implements PaymentInterface {
     private $payment;
