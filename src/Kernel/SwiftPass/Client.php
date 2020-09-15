@@ -34,11 +34,7 @@ class Client
                 wordwrap($this->config['public_rsa_key'], 64, "\n", true) .
                 "\n-----END PUBLIC KEY-----");
         }
-        $reqHandler->setReqParams($params, [
-            'url',
-            'private_rsa_key',
-            'public_rsa_key'
-        ]);
+        $reqHandler->setReqParams($params);
         $reqHandler->setParameter('service', $endpoint); //接口类型：unified.trade.micropay
         $reqHandler->setParameter('mch_id', $this->config['mch_id']); //必填项，商户号，由平台分配
         $reqHandler->setParameter('version', $this->config['version']);
