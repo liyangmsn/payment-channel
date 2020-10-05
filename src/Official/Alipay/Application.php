@@ -6,13 +6,15 @@ use PaymentChannel\Contracts\PaymentInterface;
 use PaymentChannel\Kernel\BaseApplication;
 use PaymentChannel\Kernel\Alipay;
 
-class Application extends BaseApplication implements PaymentInterface {
+class Application extends BaseApplication implements PaymentInterface
+{
     private $payment;
     private $auth_token;
     private $app_auth_token;
     private $target_app_id;
 
-    public function __construct(\PaymentChannel\Official\Application $app) {
+    public function __construct(\PaymentChannel\Official\Application $app)
+    {
         parent::__construct($app);
         $config = $this->app->getConfig();
         $this->payment = new Alipay($config['alipay']);
@@ -25,14 +27,16 @@ class Application extends BaseApplication implements PaymentInterface {
         }
     }
 
-    public function pay(array $params): array {
+    public function pay(array $params): array
+    {
         $request = new \AlipayTradePayRequest();
         $request->setBizContent(json_encode($params));
         $result = $this->payment->execute($request, $this->auth_token, $this->app_auth_token, $this->target_app_id);
         return $this->_object_to_array($result);
     }
 
-    public function unify(array $params, array $options = []): array {
+    public function unify(array $params, array $options = []): array
+    {
         $request = new \AlipayTradeCreateRequest();
         $request->setBizContent(json_encode($params));
         if (array_key_exists('notify_url', $options)) {
@@ -42,7 +46,8 @@ class Application extends BaseApplication implements PaymentInterface {
         return $this->_object_to_array($result);
     }
 
-    public function query(string $out_trade_no): array {
+    public function query(string $out_trade_no): array
+    {
         $request = new \AlipayTradeQueryRequest();
         $request->setBizContent(json_encode([
             'out_trade_no' => $out_trade_no
@@ -51,7 +56,8 @@ class Application extends BaseApplication implements PaymentInterface {
         return $this->_object_to_array($result);
     }
 
-    public function refund(string $out_trade_no, string $refund_no, int $total_fee, int $refund_fee, array $config = null): array {
+    public function refund(string $out_trade_no, string $refund_no, float $total_fee, float $refund_fee, array $config = []): array
+    {
         $request = new \AlipayTradeRefundRequest();
         $request->setBizContent(json_encode(array_merge([
             'out_trade_no' => $out_trade_no,
@@ -61,7 +67,8 @@ class Application extends BaseApplication implements PaymentInterface {
         return $this->_object_to_array($result);
     }
 
-    private function _object_to_array($obj) {
+    private function _object_to_array($obj)
+    {
         $obj = (array)$obj;
         foreach ($obj as $k => $v) {
             if (gettype($v) == 'resource') {
